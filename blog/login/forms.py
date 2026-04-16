@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Role
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -11,4 +11,12 @@ class UserForm(forms.ModelForm):
             'first_name': 'Имя',
             'last_name': 'Фамилия',
             'age': 'Возраст',
+        }
+
+class RoleForm(forms.ModelForm):
+    class Meta:
+        model=Role
+        fields=['title']
+        labels={
+            'title':'Название',
         }

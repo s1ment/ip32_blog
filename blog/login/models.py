@@ -7,3 +7,9 @@ class User(models.Model):
     last_name = models.CharField(max_length=200)
     age = models.PositiveIntegerField()
     balance = models.FloatField(default=0.0)
+
+class Role(models.Model):
+    title = models.CharField(max_length=200)
+
+def __str__(self):
+    return self.title

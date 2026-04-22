@@ -1,14 +1,9 @@
 {% extends "base.html" %}
+{% block title %}Список пользователей{% endblock title %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
+<h2>Список пользователей</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Логин</th>
@@ -16,18 +11,25 @@
             <th>Фамилия</th>
             <th>Возраст</th>
             <th>Баланс</th>
+            <th>Должность</th>
         </tr>
+    </thead>
+    <tbody>
         {% for user in users %}
         <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.login}}</td>
-            <td>{{user.first_name}}</td>
-            <td>{{user.last_name}}</td>
-            <td>{{user.age}}</td>
-            <td>{{user.balance}}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.login }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.balance }}</td>
+            <td>{{ user.role.title }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Нет пользователей</td>
         </tr>
         {% endfor %}
-    </table>
-</body>
-</html>
-{% endblock %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Список ролей{% endblock title %}
+{% block content %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название роли</th>>
+                </tr>
+            </thead>
+            <tbody>
+                {% for role in roles %}
+                <tr>
+                    <td>{{role.id}}</td>
+                    <td>{{role.name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+{% endblock content %}

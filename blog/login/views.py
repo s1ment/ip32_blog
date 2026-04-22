@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import User, Role
 from .forms import UserForm, RoleForm
+from .decorators import login_required, is_director, is_manager
 
 def users(request):
     if request.session.get('user_id'):
@@ -60,3 +61,21 @@ def login(request):
 def logout_view(request):
     request.session.flush()
     return redirect('/login')
+
+@login_required
+def for_authorized(request):
+    return render(request, 'page_for_authorized.html')
+
+def roles(request):
+    if not request.session.get('user_id'):
+        return redirect('/login/')
+    roles = Role.objects.all()
+    return(render, 'role.html', {'roles': roles, 'only_logout': True})
+
+@is_director
+def for_director(request):
+    return render(request, 'page_for_director.html')
+
+@is_manager
+def for_manager(request):
+    return render(request, 'page_for_manager.html')
